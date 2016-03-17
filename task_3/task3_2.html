@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>task3</title>
+	<style>
+		body{
+			padding: 20px;
+			margin: 0;	
+			height: 100%;			
+		}
+		ul,li{
+			list-style: none;
+			padding: 0;
+			margin:0;			
+		}	
+		.content,.left,.center,.right{
+			padding: 20px;
+			box-sizing:border-box;
+			border: 1px solid #999;	
+			background-color: #fff;		
+		}	
+		img{
+			width: 80px;
+			height: 80px;
+			border: 1px solid #999;
+			margin-bottom: 20px;
+		}
+		.content{
+			min-width: 460px;
+			background-color: #eee;			
+		}
+		.left{
+			float: left;
+			width: 200px;
+		}
+		.left p{
+			float: right;
+			text-align: center;
+			font-weight: bold;			
+		}
+		.right{
+			float: right;
+			width: 120px;
+			padding-bottom: 0;
+		}
+		.center{
+			margin: 0 140px 0 220px
+		}
+		.clearfix{
+			clear: both;			
+		}
+	</style>	
+</head>
+<body>
+	<div class="content">
+		<div class="left">	
+			<p>SHO队</p>	
+			<img src="logo.jpg" alt="">			
+		</div>		
+		<div class="right">
+			<ul>
+				<li><img src="logo1.jpg" alt=""></li>
+				<li><img src="logo2.jpg" alt=""></li>
+				<li><img src="logo3.jpg" alt=""></li>
+			</ul>
+		</div>
+		<div class="center">
+			<article>
+				<h1>SHO队</h1>
+				<p>关于我们队，我们所有的队员都在同一所学校里。我们各自抱有想法，相信这样的实践会对我们的技术学习有一个极大的提升</p>
+			</article>
+		</div>		
+		<div class="clearfix"></div>
+	</div>	
+</body>
+</html>
