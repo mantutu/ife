@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>task10</title>
+	<style>
+	body{
+		margin: 0;		
+	}	
+	.wrapper>div{
+		width: 150px;
+		border: 1px solid #f00;	
+		box-sizing:border-box;
+		margin-bottom: 20px;		
+	}
+	.wrapper>div:nth-child(1){
+		height: 120px;
+	}
+	.wrapper>div:nth-child(2){
+		height: 100px;
+	}
+	.wrapper>div:nth-child(3){
+		height: 40px;
+	}
+	.wrapper>div:nth-child(4){
+		height: 200px;
+		border: 1px solid #0f0;
+	}
+	@media (min-width: 640px){
+		.wrapper{
+			display: flex;
+			flex-flow:row wrap;
+			align-items: center;
+			justify-content: space-between;
+		}		
+	}
+	@media (max-width: 640px){
+		.wrapper{
+			display: flex;
+			flex-flow:row wrap;
+			align-items: top;
+			justify-content: space-between;
+		}
+		.wrapper>div:nth-child(4){
+			order:1;
+		}
+		.wrapper>div:nth-child(1){
+			order:2;
+		}
+		.wrapper>div:nth-child(2){
+			order:3;
+		}
+		.wrapper>div:nth-child(3){
+			order:4;
+		}
+	}	
+	</style>
+	
+</head>
+<body>
+	<div class="wrapper">
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>		
+	</div>
+</body>
+</html>
