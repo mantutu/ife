@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>task29</title>
+	<style>	
+	input[type="text"]{
+		margin: 20px;
+		height: 30px;
+		width: 300px;
+		border-radius: 5px;
+		outline: none;
+		border: 1px solid #ccc;		
+	}
+	button{
+		width: 50px;
+		height: 30px;
+		outline: none;
+		background: #0078B4;
+		border:none;
+		color:#fff;
+		border-radius: 5px;
+	}
+	button:hover{
+		background: blue;
+	}
+	p{
+		font-size: 13px;
+		color: #999;
+		margin-left: 50px;
+	}
+	</style>
+</head>
+<body>
+	<label for="">名称<input type="text" id="name"><button id="btn">验证</button></label><br>
+	<p id="desc">必填，长度为4~16个字符</p>
+
+	<script>
+	var input=document.getElementById('name');
+	var p=document.getElementById('desc');
+	var btn=document.getElementById('btn');
+	var length;
+	/*btn被点击时*/
+	btn.onclick=function(){
+		length=0;
+		//判断是否单字节
+		for(var i=0;i<input.value.length;++i){
+			var c=input.value.charCodeAt(i);
+			if ((c >= 0x0001 && c <= 0x007e) || (0xff60<=c && c<=0xff9f)) { 
+				length++;//如果是则只加1 
+			}
+			else { 
+				length+=2;//否则加2
+			}
+		}
+		if(length==0){
+			p.innerHTML="姓名不能为空";
+			input.style.border="1px solid red";
+			p.style.color="red";
+		}
+		if(!(length>=4 && length<=16)){
+			input.style.border="1px solid red";
+			p.innerHTML="请填入长度为4~16的字符串";
+			p.style.color="red";
+			console.log(length);
+		}
+		else{
+			input.style.border="1px solid green";
+			p.innerHTML="名称格式正确";
+			p.style.color="green";
+		}
+	}
+	</script>	
+</body>
+</html>
