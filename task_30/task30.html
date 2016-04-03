@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>task30</title>
+	<style>
+	form{
+		text-align: right;
+		width: 400px;
+	}
+	label{
+		display: inline-block;
+		width: 80px;
+		text-align: right;
+	}
+	input{
+		margin: 20px 0;
+		margin-left: 10px;
+		height: 30px;
+		width: 300px;
+		border-radius: 5px;
+		outline: none;
+		border: 1px solid #ccc;		
+	}
+	button{
+		width: 50px;
+		height: 30px;
+		outline: none;
+		background: #0078B4;
+		border:none;
+		color:#fff;
+		border-radius: 5px;
+	}
+	button:hover{
+		background: blue;
+	}
+	p{
+		font-size: 13px;
+		color: #999;		
+		display: none;		
+	}
+	</style>
+</head>
+<body>
+	<form>
+		<label for="username">名称</label><input type="text" id="username">
+		<p id="namedes">必填，长度为4~16个字符</p>
+		<label for="pw">密码</label><input type="password" id="pw">
+		<p id="pwdes">请输入4~16个字符之间的密码</p>
+		<label for="repw">密码确认</label><input type="password" id="repw">
+		<p id="repwdes">请再次确认密码</p>
+		<label for="email">邮箱</label><input type="text" id="email">
+		<p id="emaildes"></p>
+		<label for="tel">手机</label><input type="text" id="tel">
+		<p id="teldes"></p>
+
+		<button id="submit">提交</button>
+	</form>
+
+	<script>
+	var submit=document.getElementById('submit');
+	var username=document.getElementById('username');
+	var pw=document.getElementById('pw');
+	var repw=document.getElementById('repw');
+	var email=document.getElementById('email');
+	var tel=document.getElementById('tel');
+	var namedes=document.getElementById('namedes');
+	var pwdes=document.getElementById('pwdes');
+	var repwdes=document.getElementById('repwdes');
+	var emaildes=document.getElementById('emaildes');
+	var teldes=document.getElementById('teldes');
+	var length;
+	var cnt=0;
+
+	username.onfocus=function(){		
+		namedes.style.display="block";
+		namedes.innerHTML="请输入4~16个字符之间的密码";
+		namedes.style.color="#999";
+		username.style.border="1px solid #ccc";		
+	}
+	username.onblur=function(){
+		length=0;
+		//判断是否单字节
+		for(var i=0;i<username.value.length;++i){
+			var c=username.value.charCodeAt(i);
+			if ((c >= 0x0001 && c <= 0x007e) || (0xff60<=c && c<=0xff9f)) { 
+				length++;//如果是则只加1 
+			}
+			else { 
+				length+=2;//否则加2
+			}
+		}
+		if(length==0){
+			namedes.style.display="block";
+			namedes.innerHTML="姓名不能为空";
+			username.style.border="1px solid red";
+			namedes.style.color="red";
+		}
+		else if(!(length>=4 && length<=16)){
+			username.style.border="1px solid red";
+			namedes.innerHTML="请填入长度为4~16的字符串";
+			namedes.style.color="red";
+			console.log(length);
+		}
+		else{
+			username.style.border="1px solid green";
+			namedes.innerHTML="名称格式正确";
+			namedes.style.color="green";
+			cnt++;
+		}		
+	}
+	pw.onfocus=function(){
+		pwdes.style.display="block";		
+		pwdes.innerHTML="请输入4~16个字符之间的密码";
+		pwdes.style.color="#999";
+		pw.style.border="1px solid #ccc";
+	}
+	pw.onblur=function(){
+		length=0;
+		//判断是否单字节
+		for(var i=0;i<pw.value.length;++i){
+			var c=pw.value.charCodeAt(i);
+			if ((c >= 0x0001 && c <= 0x007e) || (0xff60<=c && c<=0xff9f)) { 
+				length++;//如果是则只加1 
+			}
+			else { 
+				length+=2;//否则加2
+			}
+		}
+		if(length==0){
+			pwdes.style.display="block";
+			pwdes.innerHTML="密码不能为空";
+			pw.style.border="1px solid red";
+			pwdes.style.color="red";
+		}
+		else if(!(length>=4 && length<=16)){
+			pw.style.border="1px solid red";
+			pwdes.innerHTML="请填入长度为4~16的密码";
+			pwdes.style.color="red";
+			console.log(length);
+		}
+		else{
+			pw.style.border="1px solid green";
+			pwdes.innerHTML="密码格式正确";
+			pwdes.style.color="green";
+			cnt++;
+		}	
+
+	}
+
+	repw.onfocus=function(){
+		repwdes.style.display="block";
+		repwdes.innerHTML="请再次确认密码";
+		repwdes.style.color="#999";
+		repw.style.border="1px solid #ccc";
+	}	
+	repw.onblur=function(){
+		if(repw.value.length==0){
+			repwdes.style.color="red";
+			repwdes.innerHTML="请重复输入密码";
+			repw.style.border="1px solid red";
+		}
+		else if(repw.value!=pw.value){
+			repwdes.style.color="red";
+			repwdes.innerHTML="请输入与上面一致的密码";
+			repw.style.border="1px solid red";
+		}
+		else if(repw.value===pw.value){
+			repwdes.style.color="green";
+			repwdes.innerHTML="输入正确";
+			repw.style.border="1px solid green";
+			cnt++;
+		}
+	}
+
+	email.onfocus=function(){
+		emaildes.style.display="block";
+		emaildes.innerHTML="请输入邮箱地址";
+		emaildes.style.color="#999";
+		email.style.border="1px solid #ccc";
+	}
+	email.onblur=function(){
+		var pattern = /^([\.a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(\.[a-zA-Z0-9_-])+/;
+		if(!pattern.test(email.value)){
+			emaildes.innerHTML="请输入正确的邮箱地址";
+			emaildes.style.color="red";
+			email.style.border="1px solid red";
+		}
+		else{
+			emaildes.innerHTML="输入正确";
+			emaildes.style.color="green";
+			email.style.border="1px solid green";
+			cnt++;
+		}
+	}
+
+	tel.onfocus=function(){
+		teldes.style.display="block";
+		teldes.innerHTML="请输入手机号码";
+		teldes.style.color="#999";
+		tel.style.border="1px solid #ccc";
+	}
+	tel.onblur=function(){
+		var mobile=/^((13[0-9]{1})|159|153)+\d{8}$/;
+		if(!mobile.test(tel.value)){
+			teldes.innerHTML="请输入正确的手机号码";
+			teldes.style.color="red";
+			tel.style.border="1px solid red";
+		}
+		else{
+			teldes.innerHTML="输入正确";
+			teldes.style.color="green";
+			tel.style.border="1px solid green";
+			cnt++;
+		}
+	}
+
+	submit.onclick=function(){
+		if(cnt!=5){
+			alert("输入有误");
+		}
+		else{
+			alert("输入正确");
+		}
+	}
+	</script>
+</body>
+</html>
